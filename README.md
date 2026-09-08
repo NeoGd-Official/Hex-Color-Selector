@@ -1,6 +1,6 @@
 # Hex-Color-Selector
 A Geode Mod That Allows You To Style Your Icons With Hex Code Colors.
 # How It Works
-The Mod Implements Custom Colors By Storing Colors In RGB Values And Applying Those To Your Color, The Mod Also Supports A Rainbow Color.
+The mod implements custom colors by converting HEX color codes into RGB values and applying those values to the icon's Color 1, Color 2, and Glow colors. It also supports dynamically generated rainbow colors.
 # Warning
-This Mod Is Vibecoded And Not Made By A Human.
+This mod was primarily AI-assisted (“vibecoded”). Please report any bugs or unexpected behavior.

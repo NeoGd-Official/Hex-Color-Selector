@@ -1,7 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/GJGarageLayer.hpp>
-#include <Geode/ui/GeodeUI.hpp>
 #include <cmath>
 
 using namespace geode::prelude;
@@ -70,7 +69,7 @@ static cocos2d::ccColor3B getRainbowColor(float hue) {
 
 
 // ============================================================
-// EXISTING HEX COLOR / RAINBOW PLAYER CODE
+// EXISTING HEX COLOR / RAINBOW CODE
 // ============================================================
 
 class $modify(HexColorPlayer, PlayerObject) {
@@ -145,15 +144,7 @@ class $modify(HexColorPlayer, PlayerObject) {
 
 
 // ============================================================
-// NEW WRENCH BUTTON
-// ============================================================
-//
-// Adds your wrench image to the Geometry Dash icon/garage screen.
-// Pressing it opens the Hex Color Selector settings.
-//
-// The image file needs to be:
-// resources/hex-button.png
-//
+// HEX COLOR SELECTOR WRENCH BUTTON
 // ============================================================
 
 class $modify(HexColorGarage, GJGarageLayer) {
@@ -162,10 +153,7 @@ class $modify(HexColorGarage, GJGarageLayer) {
         if (!GJGarageLayer::init())
             return false;
 
-        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-
-        // Create the menu that will contain our button.
-        auto menu = cocos2d::CCMenu::create();
+        auto menu = CCMenu::create();
 
         if (!menu)
             return true;
@@ -173,18 +161,18 @@ class $modify(HexColorGarage, GJGarageLayer) {
         menu->setPosition({0, 0});
         menu->setID("hex-color-selector-menu");
 
-        // Load the wrench image from this mod's resources.
-        auto sprite = cocos2d::CCSprite::create("hex-button.png"_spr);
+        // Load the wrench image from:
+        // resources/hex-button.png
+        auto wrench = CCSprite::create("hex-button.png"_spr);
 
-        if (!sprite)
+        if (!wrench)
             return true;
 
-        // The original image is large, so scale it down for the UI.
-        sprite->setScale(0.18f);
+        // Scale the 200x200 image down for the garage UI.
+        wrench->setScale(0.18f);
 
-        // Create the actual clickable button.
         auto button = CCMenuItemSpriteExtra::create(
-            sprite,
+            wrench,
             this,
             menu_selector(HexColorGarage::onHexColorButton)
         );
@@ -194,7 +182,10 @@ class $modify(HexColorGarage, GJGarageLayer) {
 
         button->setID("hex-color-selector-button");
 
-        // Position the button near the top-right of the garage.
+        // Put the button in the top-right corner.
+        auto winSize =
+            CCDirector::sharedDirector()->getWinSize();
+
         button->setPosition({
             winSize.width - 45.0f,
             winSize.height - 45.0f
@@ -202,14 +193,13 @@ class $modify(HexColorGarage, GJGarageLayer) {
 
         menu->addChild(button);
 
-        // Add the menu to the garage layer.
         this->addChild(menu, 100);
 
         return true;
     }
 
-    void onHexColorButton(cocos2d::CCObject*) {
-        // Open this mod's existing Geode settings.
-        geode::openSettingsPopup(Mod::get());
+    void onHexColorButton(CCObject*) {
+        // Opens this mod's Geode settings.
+        openSettingsPopup(Mod::get());
     }
 };

@@ -10,7 +10,7 @@
     "version": "1.0.0",
     "developer": "Neo_",
 
-    "description": "Customize your Geometry Dash icon colors using HEX colors, with optional dynamic rainbow colors.",
+    "description": "Customize your Geometry Dash icon colors using HEX colors.",
 
     "links": {
         "source": "https://github.com/NeoGd-Official/Hex-Color-Selector"
@@ -45,33 +45,6 @@
             "type": "rgb",
             "name": "Glow",
             "default": "#ffffff"
-        },
-
-        "rainbow-color1": {
-            "type": "bool",
-            "name": "Rainbow Color 1",
-            "default": false
-        },
-
-        "rainbow-color2": {
-            "type": "bool",
-            "name": "Rainbow Color 2",
-            "default": false
-        },
-
-        "rainbow-glow": {
-            "type": "bool",
-            "name": "Rainbow Glow",
-            "default": false
-        },
-
-        "rainbow-speed": {
-            "type": "float",
-            "name": "Rainbow Speed",
-            "default": 1.0,
-            "min": 0.1,
-            "max": 5.0,
-            "step": 0.1
         }
     }
 }

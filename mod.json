@@ -16,6 +16,12 @@
         "source": "https://github.com/NeoGd-Official/Hex-Color-Selector"
     },
 
+    "resources": {
+        "sprites": [
+            "resources/hex-button.png"
+        ]
+    },
+
     "settings": {
         "enabled": {
             "type": "bool",
